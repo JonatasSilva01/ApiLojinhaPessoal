@@ -9,6 +9,8 @@ namespace PrimeiroInfluencer.ProfileMap
         public ProductMapper() 
         {
             CreateMap<ProductCreateDto, Product>();
+            CreateMap<UpdateProdDto, Product>();
+            CreateMap<Product, UpdateProdDto>();
         }
     }
 }

@@ -11,6 +11,9 @@ builder.Services.AddDbContext<ProductContext>(options => options.UseMySql(conect
 // Add auto mapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+// add newtonjson (ModelState)
+builder.Services.AddControllers().AddNewtonsoftJson();
+
 // add controller.
 builder.Services.AddControllers();
 
