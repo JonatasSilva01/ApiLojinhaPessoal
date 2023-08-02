@@ -71,7 +71,12 @@ namespace PrimeiroInfluencer.Controllers
         {
             var user = await _productContext.ProductDb.FirstOrDefaultAsync(x => x.id.Equals(id));
 
+            var date = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+            var dateConvert = DateTime.Parse(date);
+
             if (user == null) NotFound();
+
+            user.update_at = dateConvert;
 
             var ProdMapper = _mapper.Map<UpdateProdDto>(user);
 
