@@ -4,13 +4,16 @@ namespace PrimeiroInfluencer.Data.DTOs
 {
     public class ProductCreateDto
     {
-        [Required(ErrorMessage = "Do not skip this")]
-        public string? name_prod { get; set; }
+        [Required(ErrorMessage = "u not skip this")]
+        public string name_prod { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Do not skip this")]
-        public string? gender_prod { get; set; }
+        [Required(ErrorMessage = "u not skip this")]
+        public string gender_prod { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Do not skip this")]
-        public double price_prod { get; set; }
+        [Required(ErrorMessage = "I need image")]
+        public string imageUrl { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "u not skip this")]
+        public string price_prod { get; set; } = string.Empty;
     }
 }

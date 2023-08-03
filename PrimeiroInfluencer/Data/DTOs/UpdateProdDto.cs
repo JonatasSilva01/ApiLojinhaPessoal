@@ -12,5 +12,6 @@ namespace PrimeiroInfluencer.Data.DTOs
 
         [Required(ErrorMessage = "Do not skip this")]
         public string? price_prod { get; set; }
+        public string imageUrl { get; set; } = string.Empty;
     }
 }

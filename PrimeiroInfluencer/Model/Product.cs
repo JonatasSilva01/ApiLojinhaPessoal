@@ -8,15 +8,17 @@ namespace PrimeiroInfluencer.Model
         [Required]
         public Guid id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Do not skip this")]
         public string? name_prod { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Do not skip this")]
         public string? gender_prod { get; set; }
-        public int qtd_prod { get; set; }
+
+        [Required(ErrorMessage = "I need image")]
+        public string? imageUrl { get; set; }
 
         [Required(ErrorMessage = "This field need value")]
         [MaxLength(100, ErrorMessage = "I need price")]
-        public string? price_prod { get; set; }
+        public string price_prod { get; set; }
 
         [Display(Name = "creation date")]
         [DataType(DataType.Date)]

@@ -8,6 +8,6 @@ namespace PrimeiroInfluencer.Data.DTOs
         public string name_prod { get; set; } = string.Empty;
         public string gender_prod { get; set; } = string.Empty;
         public string price_prod { get; set; } = string.Empty;
-        public int qtd_prod { get; set; }
+        public string imageUrl { get; set; } = string.Empty;
     }
 }

@@ -27,11 +27,11 @@ namespace PrimeiroInfluencer.Controllers
         {
             Product _prod = _mapper.Map<Product>(prodDto);
 
-            _prod.qtd_prod++;
-
             var price = Convert.ToDecimal(_prod.price_prod);
 
             if (price < 0) BadRequest();
+
+            if (_prod.imageUrl.Length < 0) BadRequest();
 
             await _productContext.ProductDb.AddAsync(_prod);
             _productContext.SaveChanges();

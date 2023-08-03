@@ -11,7 +11,7 @@ using PrimeiroInfluencer.Data;
 namespace PrimeiroInfluencer.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    [Migration("20230801014907_CreateTableProd")]
+    [Migration("20230803015851_CreateTableProd")]
     partial class CreateTableProd
     {
         /// <inheritdoc />
@@ -35,6 +35,10 @@ namespace PrimeiroInfluencer.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("imageUrl")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("name_prod")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -43,9 +47,6 @@ namespace PrimeiroInfluencer.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
-
-                    b.Property<int>("qtd_prod")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("update_at")
                         .HasColumnType("datetime(6)");
