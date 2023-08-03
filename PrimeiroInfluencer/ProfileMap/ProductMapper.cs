@@ -11,6 +11,7 @@ namespace PrimeiroInfluencer.ProfileMap
             CreateMap<ProductCreateDto, Product>();
             CreateMap<UpdateProdDto, Product>();
             CreateMap<Product, UpdateProdDto>();
+            CreateMap<Product, ReadProdDto>();
         }
     }
 }

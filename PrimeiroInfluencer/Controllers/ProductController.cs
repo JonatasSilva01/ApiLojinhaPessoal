@@ -23,7 +23,7 @@ namespace PrimeiroInfluencer.Controllers
         }
 
         [HttpPost]
-        public IActionResult PostProd([FromBody] ProductCreateDto prodDto)
+        public async Task<IActionResult> PostProd([FromBody] ProductCreateDto prodDto)
         {
             Product _prod = _mapper.Map<Product>(prodDto);
 
@@ -33,24 +33,25 @@ namespace PrimeiroInfluencer.Controllers
 
             if (price < 0) BadRequest();
 
-            _productContext.ProductDb.Add(_prod);
+            await _productContext.ProductDb.AddAsync(_prod);
             _productContext.SaveChanges();
           
             return CreatedAtAction(nameof(PostProd), new { id = _prod.id }, _prod);
         }
 
         [HttpGet]
-        public IEnumerable<Product> GetProd([FromQuery] int skip = 0, [FromQuery] int Take = 10) 
+        public IEnumerable<ReadProdDto> GetProd([FromQuery] int skip = 0, [FromQuery] int Take = 10) 
         {
-            return _productContext.ProductDb.Skip(skip).Take(Take);
+            return _mapper.Map<List<ReadProdDto>>(_productContext.ProductDb.Skip(skip).Take(Take));
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetProd(Guid id) 
+        public async Task<IActionResult> GetProd(Guid id) 
         {
-            var prod = _productContext.ProductDb.FirstOrDefault(x => x.id.Equals(id));
+            var prod = await _productContext.ProductDb.FirstOrDefaultAsync(x => x.id.Equals(id));
             if (prod == null) NotFound();
-            return Ok(prod);
+            var prodDto = _mapper.Map<ReadProdDto>(prod);
+            return Ok(prodDto);
 
         }
 
@@ -87,6 +88,16 @@ namespace PrimeiroInfluencer.Controllers
             _mapper.Map(ProdMapper, user);
             _productContext.SaveChanges();
 
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProd(Guid id) 
+        {
+            var prod = await _productContext.ProductDb.FirstOrDefaultAsync(prod => prod.id.Equals(id));
+            if (prod == null) return NotFound();
+            _productContext.Remove(prod);
+            _productContext.SaveChanges();
             return NoContent();
         }
     }
