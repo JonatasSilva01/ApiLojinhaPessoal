@@ -10,9 +10,9 @@ using PrimeiroInfluencer.Data;
 
 namespace PrimeiroInfluencer.Migrations
 {
-    [DbContext(typeof(ProductContext))]
-    [Migration("20230803015851_CreateTableProd")]
-    partial class CreateTableProd
+    [DbContext(typeof(DatabaseContext))]
+    [Migration("20230804162022_InicialMigrationWithAddresAndProd")]
+    partial class InicialMigrationWithAddresAndProd
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,6 +21,25 @@ namespace PrimeiroInfluencer.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("PrimeiroInfluencer.Model.Address", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("NumberHouse")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PublicPlace")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AddressDb");
+                });
 
             modelBuilder.Entity("PrimeiroInfluencer.Model.Product", b =>
                 {

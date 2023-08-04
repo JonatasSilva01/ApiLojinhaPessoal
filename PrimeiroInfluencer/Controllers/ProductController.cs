@@ -8,15 +8,14 @@ using PrimeiroInfluencer.Model;
 
 namespace PrimeiroInfluencer.Controllers
 {
-
     [ApiController]
     [Route("[controller]")]
     public class ProductController : ControllerBase
     {
-        private ProductContext _productContext;
+        private DatabaseContext _productContext;
         private IMapper _mapper;
 
-        public ProductController(ProductContext productContext, IMapper mapper)
+        public ProductController(DatabaseContext productContext, IMapper mapper)
         {
             _productContext = productContext;
             _mapper = mapper;
